@@ -11,6 +11,7 @@ class GameCharacter
     int attack;
     int hp;
 
+    GameCharacter(){hp=0;attack=0;}
     GameCharacter(int a,int b):attack(a),hp(b){};
     bool isDeath()
     {
@@ -40,6 +41,9 @@ class GameCharacter
 class Monster:public GameCharacter
 {
     public:
+    Monster (){
+        hp=0;attack=0;
+    }
     bool operator<(Monster in)
     {
     if (attack>in.attack)
@@ -59,8 +63,12 @@ class Monster:public GameCharacter
 class Scuter:public GameCharacter
 {
     public:
+    
+    Scuter(int a,int b){hp=a;attack=b;}
     int leastLossOfHp(Monster* monsters,int num)
     {
+        int total=0;
+        int round;
         for (int i=0;i<num;i++)
         {
          Monster max=monsters[i];
@@ -72,8 +80,45 @@ class Scuter:public GameCharacter
          Monster temp=max;
          max=monsters[i];
          monsters[i]=temp;
-         
+         round=(max.hp/attack);
+         double floatround=(max.hp/attack);
+         if (fabs(floatround-round)!=0)
+         round++;
+         for (int k=1;k<round;k++)
+         {
+          for (int q=i;q<num;q++)
+          {
+            total+=monsters[q].attack;
+          }
+         }
         }
+        hp=hp-total;
+        return total;
 
     }
 };
+
+int main() {
+	Monster* monster;
+	int attack, hp, num;
+	while (cin >> hp >> attack) {
+		Scuter scuter(hp, attack);
+		cin >> num;
+		monster = new Monster[num];
+		for (int i = 0; i < num; ++i) {
+			cin >> hp >> attack;
+			monster[i].setHp(hp);
+			monster[i].setAttack(attack);
+		}
+		cout << scuter.leastLossOfHp(monster, num) << " ";
+		if (scuter.isDeath()) {
+			cout << "Dead" << endl;
+		}
+		else {
+			cout << "Alive" << endl;
+		}
+		delete[] monster;
+		monster = nullptr;
+	}
+	return 0;
+}
