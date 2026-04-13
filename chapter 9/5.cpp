@@ -52,12 +52,16 @@ class Monster:public GameCharacter
     {
         if (hp<in.hp)
         return 0;
-        else
+        if (hp>in.hp)
         return 1;
-    }
+        if (hp==in.hp)
+        return 0;
+    }    //简单的认为攻击力越高且血量越低的单位越需要早点处理
     if (attack<in.attack)
-    return 1;
-    }
+    {return 1;}
+     return 0;
+}
+    
 };
 
 class Scuter:public GameCharacter
@@ -69,22 +73,29 @@ class Scuter:public GameCharacter
     {
         int total=0;
         int round;
+        int index;
         for (int i=0;i<num;i++)
         {
-         Monster max=monsters[i];
-            for (int j=i;j<num;j++)
+            index=i;
+            Monster max=monsters[i];
+            int j;
+         for (j=i;j<num;j++)
          {
           if (!(monsters[j]<max))
-          max=monsters[j];
+           { max=monsters[j];
+            index=j;} //养成好习惯，if 要加大括号！！！！！
          }
-         Monster temp=max;
-         max=monsters[i];
+       
+         
+         Monster temp=monsters[index];
+         monsters[index]=monsters[i];
          monsters[i]=temp;
-         round=(max.hp/attack);
-         double floatround=(max.hp/attack);
-         if (fabs(floatround-round)!=0)
+         
+         double floatround=double (temp.hp)/double(attack);
+         round=temp.hp/attack;
+         if ((floatround-int(temp.hp/attack))!=0)
          round++;
-         for (int k=1;k<round;k++)
+         for (int k=1;k<=round;k++)
          {
           for (int q=i;q<num;q++)
           {
@@ -110,7 +121,8 @@ int main() {
 			monster[i].setHp(hp);
 			monster[i].setAttack(attack);
 		}
-		cout << scuter.leastLossOfHp(monster, num) << " ";
+
+        cout << scuter.leastLossOfHp(monster, num) << " ";
 		if (scuter.isDeath()) {
 			cout << "Dead" << endl;
 		}
