@@ -1,0 +1,42 @@
+设计一个 Polynomial 类，表示一元多项式。多项式的系数从常数项开始输入。请实现多项式求值功能。
+
+
+
+
+要求：
+
+构造函数接收多项式次数和系数数组。
+成员函数 value(int x) 返回多项式在 x 处的值。
+成员函数 print() 输出所有系数。
+请实现相关类，使下列main函数得以运行
+int main() {
+    int n, x;
+    while (cin >> n) {
+        vector<int> coef(n + 1);
+        for (int i = 0; i <= n; i++) {
+            cin >> coef[i];
+        }
+        cin >> x;
+        Polynomial p(n, coef);
+        p.print();
+        cout << p.value(x) << endl;
+    }
+    return 0;
+}
+
+输入
+多组数据。每组第一行输入整数 n，表示多项式最高次数。
+第二行输入 n+1 个整数，表示从常数项到最高次项的系数。
+第三行输入整数 x。
+
+输出
+输出多项式系数。
+输出多项式在 x 处的值。
+
+样例输入 Copy
+2
+1 2 3
+2
+样例输出 Copy
+1 2 3
+17

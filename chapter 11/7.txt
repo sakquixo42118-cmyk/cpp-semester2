@@ -1,0 +1,25 @@
+编写一个函数模板，该函数接受一个字符串参数，并返回该字符串的反转版本。main函数的测试代码如下：
+
+int main() {
+	string line;
+	while (getline(cin, line)) {
+		// 函数模板basic_string<CharType> reverseString(const basic_string<CharType>& str)
+		auto reversed = reverseString(line);
+		cout << reversed << endl;
+	}
+	return 0;
+}
+输入
+输入包含多行，每行是一个字符串。
+
+输出
+对于每行输入的字符串，输出其反转后的版本。
+
+必须使用的关键字
+template 
+样例输入 Copy
+hello
+world
+样例输出 Copy
+olleh
+dlrow

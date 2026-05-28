@@ -1,0 +1,118 @@
+设计一个简单的CPU任务调度系统：
+
+（1）抽象基类Task
+
+成员：
+
+string name
+
+int priority
+
+纯虚函数：
+
+int getTime()（任务耗时）
+
+cmp函数
+
+（2）派生类
+
+1）CPUTask
+
+成员：int cycles
+
+耗时 = cycles / 10
+
+2）IOTask
+
+成员：int size
+
+耗时 = size / 5
+
+（3）功能要求：
+
+所有任务存入 vector<Task*>
+
+实现cmp函数bool cmp(Task* a, Task* b) 按：
+
+1）优先级降序
+
+2）耗时升序
+排序
+
+最终输出任务执行顺序
+
+main函数如下：
+
+int main() {
+
+    int n;
+
+    
+
+ 
+
+    while (cin >> n) {
+
+        vector<Task*> tasks;
+
+        for (int i = 0; i < n; i++) {
+
+            string type;
+
+            string name;
+
+            int p, val;
+
+ 
+
+            cin >> type >> name >> p >> val;
+
+ 
+
+            if (type == "CPU") {
+
+                tasks.push_back(new CPUTask(name, p, val));
+
+            } else if (type == "IO") {
+
+                tasks.push_back(new IOTask(name, p, val));
+
+            }
+
+        }
+
+        // 排序
+
+        sort(tasks.begin(), tasks.end(), cmp);
+
+        // 输出
+
+        for (int i = 0; i < tasks.size(); i++) {
+
+            cout << tasks[i]->name << " "
+
+                 << tasks[i]->getTime() << endl;
+
+        }
+
+        tasks.clear();
+
+    }
+
+    return 0;
+
+}
+
+输入
+多组数据，每组数据第一行为本组数据个数 n，之后n行数据为 类别 名字 优先级 任务大小
+输出
+输出每组数据排序后的任务名以及耗时
+样例输入 Copy
+3
+CPU A 5 100
+IO B 6 50
+CPU C 3 200
+样例输出 Copy
+B 10
+A 10
+C 20

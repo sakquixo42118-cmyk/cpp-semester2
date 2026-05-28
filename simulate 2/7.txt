@@ -1,0 +1,25 @@
+设计一个类 StringCounter，统计字符串中连续相同字符的个数，并输出压缩结果。例如：aaabbc → a3b2c1
+
+main函数如下：
+
+int main(){
+    string s;
+    while(cin >> s){
+        StringCounter sc(s);
+        sc.compress();
+        sc.print();
+    }
+    return 0;
+}
+
+输入
+字符串
+
+输出
+对连续字符进行压缩的结果
+样例输入 Copy
+aaabbc
+S
+样例输出 Copy
+a3b2c1
+S1

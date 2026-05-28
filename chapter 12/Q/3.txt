@@ -1,0 +1,32 @@
+编写一个程序，将文本中所有的指定字符串替换为另一个字符串，并将结果输出。以下是main函数，请补充完整：
+
+int main() {
+	string old_str, new_str, line;
+	int n;
+	while (cin >> n) { 
+		cin.ignore();
+		getline(cin, old_str); // 要替换的字符串
+		getline(cin, new_str); // 替换后的字符串
+		for (int i = 0; i < n; i++) {
+			getline(cin, line);
+			// 执行字符串替换
+			string new_line = replace_all(line, old_str, new_str);
+			cout << new_line << endl;
+		}
+	}
+	return 0;
+}
+输入
+第一行输入文本行数n，第二行输入要替换的字符串，第三行输入替换后的字符串，后续n行输入文本。
+输出
+替换后的内容。
+
+样例输入 Copy
+2
+hello
+hi
+hello world
+test hello code
+样例输出 Copy
+hi world
+test hi code

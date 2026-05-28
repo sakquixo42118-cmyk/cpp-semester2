@@ -1,0 +1,33 @@
+按给出的提示和提供的 main 函数代码，设计 Point、Circle 和 Cylinder 类，并求出圆柱 体类的表面积和体积。
+
+(1) 建立一个 Point 类，包含数据成员 x,y，并完成需要的相关成员函数
+
+(2) 以 Point 类为基类，派生出一个 Circle 类，增加数据成员 r(半径)，以及求面积的成员函数area和周长的成员函数perimeter,并实现需要的相关成员函数
+
+(3) 以 Circle 类为直接基类，派生出一个 Cylinder(圆柱体类),再增加一个数据成员 h(高)，以及求圆柱表面积的成员函数 area 和求圆柱体积的成员函数 volume，并实现需要的相关成员函数。 圆柱体的表面积计算公式Circle::perimeter()*(r+h)，圆柱体的体积计算公式为 Circle::area()*h，计算过程中圆周率设置为 3.14，计算结果保留两位小数。相应的测试主函数如下所示：
+
+int main()
+{
+	int x, y, r, h;
+	cin >> x >> y >> r >> h;
+	Cylinder cy1(x, y, r, h);
+	cout << cy1.area() << " " << cy1.volume() << endl;
+	cin >> x >> y >> r >> h;
+	cy1.setHeight(h);
+	cy1.setRadius(r);
+	cy1.setPoint(x, y);
+	cout << cy1;
+	return 0;
+}
+输入
+第一行先输入给定圆柱体的 x,y,r,h；第二行输入新的圆柱体的 x,y,r,h;
+
+输出
+输出对应的圆柱体的表面积和体积
+
+样例输入 Copy
+1 1 1 1
+1 2 2 2
+样例输出 Copy
+12.56 3.14
+50.24 25.12

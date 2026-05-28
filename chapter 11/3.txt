@@ -1,0 +1,26 @@
+创建一个模板类，该类包含一个固定大小的数组成员。提供一个成员函数用于去除数组中的重复元素，并返回去重后的数组。main函数的测试代码如下：
+
+int main() {
+	const size_t MAX_SIZE = 1000;
+	int n;
+	while (cin >> n) {
+		UniqueArray<int, MAX_SIZE> arr;
+		arr.readInput(static_cast<size_t>(n));
+		arr.removeDuplicates();
+		arr.print();
+	}
+	return 0;
+}
+输入
+输入包含多组数据，每组数据由两行组成。第一行是一个整数n，表示数组的大小；第二行包含n 个整数，表示数组的元素。
+
+输出
+对于每组输入数据，输出去重后的数组元素。
+
+必须使用的关键字
+template 
+样例输入 Copy
+5 
+1 2 2 3 4
+样例输出 Copy
+1 2 3 4

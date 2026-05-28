@@ -1,0 +1,60 @@
+设计一个 Car 类，用于计算汽车行驶费用，并比较两辆汽车的费用。
+
+要求：
+
+成员变量包括汽车名称 name、每公里费用 costPerKm、基础费用 baseCost。
+构造函数初始化汽车信息。
+成员函数 getCost(double distance) 返回汽车行驶费用。
+成员函数 getName() 返回汽车名称。
+成员函数 isCheaperThan(Car other, double distance) 判断当前汽车费用是否小于等于另一辆汽车。
+费用计算公式：
+
+费用 = 距离 * 每公里费用 + 基础费用
+
+请实现相关类 使得下列main得以运行
+
+
+int main() {
+    string name1, name2;
+    double cost1, cost2;
+    double base1, base2;
+    double distance;
+    while (cin >> name1 >> cost1 >> base1) {
+        cin >> name2 >> cost2 >> base2;
+        cin >> distance;
+        Car car1(name1, cost1, base1);
+        Car car2(name2, cost2, base2);
+        cout << car1.getName() << ": " << car1.getCost(distance) << endl;
+        cout << car2.getName() << ": " << car2.getCost(distance) << endl;
+        if (car1.isCheaperThan(car2, distance)) {
+            cout << "Cheaper: " << car1.getName() << endl;
+        } else {
+            cout << "Cheaper: " << car2.getName() << endl;
+        }
+    }
+    return 0;
+}
+
+输入
+多组输入。
+每组输入两辆汽车的信息和行驶距离。
+
+每辆汽车包含：
+
+汽车名称 每公里费用 基础费用
+
+最后输入行驶距离。
+
+输出
+输出两辆汽车的费用。
+输出费用更低的汽车名称。
+如果费用相同，输出第一辆汽车。
+
+样例输入 Copy
+BMW 0.8 10
+Audi 1.2 5
+100
+样例输出 Copy
+BMW: 90
+Audi: 125
+Cheaper: BMW

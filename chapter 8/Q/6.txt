@@ -1,0 +1,31 @@
+定义人民币 RMB 类，该类的数据成员包括 int yuan(元)、int jiao(角)、int fen(分)、bool mark(标志，表示正负数)。RMB 类的构造函数至少包含两种，即使用(元、角、分、标志) 或者使用 double 类型数据来构造 RMB 类。以下是 main 函数的代码，请根据 main 函数的需要补充 RMB 类的定义。
+
+int main()
+{
+	RMB a, b;
+	double c;
+	cout.setf(cout.showpoint);
+	cout.precision(2);
+	cout.setf(ios::fixed);
+	cin >> a;
+	cin >> b;
+	cin >> c;
+	cout << RMB(a + c) << endl;
+	cout << RMB(b - a) << endl;
+	cout << RMB(2.18 + a) << endl;
+	return 0;
+}
+输入
+先分别输入 a 和 b 的元、角、分，再输入一个 double 类型数据作为 c 的输入
+
+输出
+按格式依根据 main 函数代码，给出 RMB 类加减的结果；结果以浮点数输出，保留两位小数
+
+样例输入 Copy
+1 2 3
+1 5 1
+3.23
+样例输出 Copy
+4.46 
+0.28 
+3.41

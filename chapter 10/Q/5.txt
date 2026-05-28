@@ -1,0 +1,25 @@
+编写一个简单的图形绘制程序。设计一个基类 Shape 表示所有形状，并添加两个子类 Circle 和 Rectangle，分别表示圆形和矩形。每个形状，可以通过 getName()方法获取名字，可以通过 getArea()方法计算其面积。请使用多态来实现这些功能。圆形的面积公式为πr²，矩形的面积公式为 w×h，π直接取 3.14。具体的 main 函数测试代码如下：
+int main() {
+	double r, l, w;
+	while (cin >> r >> l >> w) {
+		Shape* s1 = new Circle(r);
+		Shape* s2 = new Rectangle(l, w);
+		cout << fixed << setprecision(2);
+		cout << s1->getName() << " area = " << s1->getArea() << endl;
+		cout << s2->getName() << " area = " << s2->getArea() << endl;
+	}
+	return 0;
+}
+输入
+三个 double，分别表示圆形的半径和矩形的长和宽，测试数据保证均为正数。
+输出
+图形的名称和面积
+
+样例输入 Copy
+2 3 4
+4 5 6
+样例输出 Copy
+Circle area = 12.56
+Rectangle area = 12.00
+Circle area = 50.24
+Rectangle area = 30.00

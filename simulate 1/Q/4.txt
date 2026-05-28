@@ -1,0 +1,116 @@
+设计一个运动赛事相关的类体系，用于对运动赛事进行管理。要求如下:
+
+1.创建一个基类SportsEventbase，包含赛事名称（eventName）、举办地点（location）、举办时间（time）等基本属性。属性都是字符串类型。定义一个纯虚函数displayEventDetails用于展示赛事的基本信息。
+
+2.设计一个Athlete类，代表运动员，包含运动员姓名（athleteName）和所属队伍（team）。属性类型都是字符串。
+
+3. 实现田径赛事类TrackAndFieldEvent和球类赛事类BallGameEvent，两个类继承自SportsEventbase。TrackAndFieldEvent类新增属性比赛项目（trackEventItem）和世界纪录（worldRecord）属性，BallGameEvent类中新增属性参赛队伍数量（teamCount）和比赛规则（rules）属性。teamCount是int，其它属性都为字符串。除此之外，TrackAndFieldEvent类和BallGameEvent类都需要一个vector包含多个Athlete对象来存放参加赛事的运动员信息，并实现添加运动员addAthlete方法用来向vector中添加运动员。这两个子类都要实现displayEventDetails函数，用于展示各自的详细赛事信息和运动员信息。
+
+ 
+
+根据下列函数进行测试：
+
+int main() {
+
+    string eventName;// 赛事类型名称
+
+    string location; // 地点
+
+    string time;// 时间
+
+    string trackEventItem;// 具体项目
+
+    string worldRecord;// 世界记录
+
+    int teamCount;//队伍数量
+
+    string rules;//比赛规则
+
+    string athleteName;//运动员名称
+
+    string team;//队伍名称
+
+ 
+
+    // 创建田径赛事对象并添加运动员
+
+    cin >> eventName >> location >> time >> trackEventItem >> worldRecord;
+
+    TrackAndFieldEvent trackEvent(eventName, location, time, trackEventItem, worldRecord);
+
+    cin >> athleteName >> team;
+
+    trackEvent.addAthlete(Athlete(athleteName, team));
+
+    cin >> athleteName >> team;
+
+    trackEvent.addAthlete(Athlete(athleteName, team));
+
+    
+
+    // 创建球类赛事对象并添加运动员
+
+    cin >> eventName >> location >> time >> teamCount >> rules;
+
+    BallGameEvent basketballEvent(eventName, location, time, teamCount, rules);
+
+    cin >> athleteName >> team;
+
+    basketballEvent.addAthlete(Athlete(athleteName, team));
+
+    cin >> athleteName >> team;
+
+    basketballEvent.addAthlete(Athlete(athleteName, team));
+
+
+
+
+    // 展示田径赛事详细信息
+
+    trackEvent.displayEventDetails();
+
+    cout << endl;
+
+    // 展示球类赛事详细信息
+
+    basketballEvent.displayEventDetails();
+
+    return 0;
+
+}
+
+输入
+两个运动赛事的信息和每个赛事的两个运动员信息，参考测试代码
+
+输出
+displayEventDetails函数输出类中的信息，参考样例输出
+
+必须使用的关键字
+class 
+样例输入 Copy
+Sprint Olympic_Stadium 2024-08-05 200m 19.19s
+Usain_Bolt Jamaica
+Yohan_Blake Jamaica
+Basketball_Tournament Indoor_Arena 2024-1-15 8 FIBA_rules
+Michael_Jordan Chicago_Bulls
+LeBron_James_Los Angeles_Lakers
+样例输出 Copy
+Track and Field Event Details:
+Event Name: Sprint
+Location: Olympic_Stadium
+Time: 2024-08-05
+Event Item: 200m
+World Record: 19.19s
+Athletes:
+-Name: Usain_Bolt, Team: Jamaica
+-Name: Yohan_Blake, Team: Jamaica
+
+Ball Game Event Details:
+Event Name: Basketball_Tournament
+Location: Indoor_Arena
+Time: 2024-1-15
+Team Count: 8
+Rules: FIBA_rules
+Athletes:
+-Name: Michael_Jordan, Team: Chicago_Bulls
+-Name: LeBron_James_Los, Team: Angeles_Lakers

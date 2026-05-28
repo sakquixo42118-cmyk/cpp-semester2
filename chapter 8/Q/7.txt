@@ -1,0 +1,80 @@
+设计一个矩阵类，当创建矩阵类的对象时，根据提供的行数和列数信息，内部可以通过 动态内存分配的机制创建一个任意大小的二维数组用来存储矩阵的数据。相应的，对象析构时应该释放动态分配的数组。对 Matrix 类重载以下运算符：
+
+（1）将下标运算符[]重载为矩阵类的成员函数，实现用对象名加两个下标的形式能够直接访问二维数组元素的效果；
+
+（2）重载“<<”运算符，实现矩阵的输出功能；
+
+（3）重载“+”运算符（重载为非成员的形式），实现矩阵加法；
+
+（4）重载“*”运算符（重载为非成员的形式），实现矩阵乘法；
+
+请根据 main 函数的内容完成该类的设计。注意动态内存分配可能需要解决深复制问题。
+
+int main() {
+	int a, b;
+	cin >> a >> b;
+	Matrix m1(a, b), m2(a, b), m3(b, a);
+	int i, j;
+	for (i = 0; i < m1.getRows(); i++)
+		for (j = 0; j < m1.getColumns(); j++)
+			cin >> m1[i][j];
+	for (i = 0; i < m2.getRows(); i++)
+		for (j = 0; j < m2.getColumns(); j++)
+			cin >> m2[i][j];
+	for (i = 0; i < m3.getRows(); i++)
+		for (j = 0; j < m3.getColumns(); j++)
+			cin >> m3[i][j];
+	cout << "Matrix M1:" << endl;
+	cout << m1;
+	cout << "Matrix M2:" << endl;
+	cout << m2;
+	cout << "Matrix M3:" << endl;
+	cout << m3;
+	cout << "Result of Matrix Addition:" << endl;
+	cout << m1 + m2;
+	cout << "Result of Matrix Multiplication:" << endl;
+	cout << m1 * m3;
+	return 0;
+}
+输入
+1、第一行输入两个整数 a 和 b
+
+2、接下来输入第一个矩阵：a 行 b 列
+
+3、接下来输入第二个矩阵：a 行 b 列
+
+4、接下来输入第三个矩阵：b 行 a 列
+
+输出
+依次分别输出三个矩阵的数据
+
+然后输出第一个矩阵和第二个矩阵相加的结果
+
+最后输出第一个矩阵和第三个矩阵相乘的结果
+
+样例输入 Copy
+2 3
+1 2 3
+4 5 6
+1 2 3
+4 5 6
+1 2
+3 4
+5 6
+样例输出 Copy
+Matrix M1:
+1 2 3
+4 5 6
+Matrix M2:
+1 2 3
+4 5 6
+Matrix M3:
+1 2
+3 4
+5 6
+Result of Matrix Addition:
+2 4 6
+8 10 12
+Result of Matrix Multiplication:
+22 28
+49 64

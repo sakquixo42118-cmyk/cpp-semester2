@@ -1,0 +1,55 @@
+为了管理多种汽车的收费工作，请根据下述要求完成设计。
+
+1) 设计一个基类 Vehicle，该基类包含一个虚函数 display 用于输出汽车所需缴纳的费用。
+2) 以 Vehicle 为基类，派生出 Car、Truck 和 Bus 类。并根据不同类型的汽车的收费标准不同来修改 display 方法。Car 的收费公式为：载客数×8+重量×2；Truck 的收费公式为：重量×5；Bus 的收费公式为：载客数×3。具体的 main 函数测试代码如下：
+
+int main()
+{
+	Vehicle* pd[10];
+	int t, num, i = 0;
+	double kg;
+	cin >> t;
+	while (t) {
+		if (t == 1) {
+			cin >> num >> kg;
+			pd[i] = new Car(num, kg);
+		}
+		else if (t == 2) {
+			cin >> kg;
+			pd[i] = new Truck(kg);
+		}
+		else if (t == 3) {
+			cin >> num;
+			pd[i] = new Bus(num);
+		}
+		pd[i]->display();
+		i++;
+		cin >> t;
+	}
+	return 0;
+}
+输入
+每个测试用例占一行，每行给出汽车的基本信息，第一个为当前汽车的类型，其中 1 为 Car，2 为 Truck，3 为 Bus。
+
+如果是 Car，则接下来给出载客数 num 和重量 kg，例如：1 20 5；
+
+如果是 Truck，则接下来给出重量 kg，例如：2 50；
+
+如果是 Bus 则接下来给出载客数 num， 例如：3 30。
+
+最后一行为 0，表示输入的结束。
+
+输出
+输出各车应缴纳的费用。
+
+样例输入 Copy
+1 20 5
+3 30
+2 50
+1 17 6
+0
+样例输出 Copy
+170
+90
+250
+148

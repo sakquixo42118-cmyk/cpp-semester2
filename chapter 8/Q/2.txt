@@ -1,0 +1,42 @@
+题目描述
+设计一个 Array 类，用来存储和表示二维数组，并在该类中分别用成员函数和友元函数重载运算符 + 和 —，对指定的两个二维数组进行加法和减法运算。测试主函数如下所示：
+
+int main() {
+	Array rr, aa, p3;
+	int a, b, c, d;
+	while (cin >> a >> b >> c >> d) {
+		rr.input_array1(a, b);
+		aa.input_array2(c, d);
+		p3 = rr + aa;
+		cout << "Addition result:";
+		p3.show();
+		cout << " ";
+		p3 = rr - aa;
+		cout << "Subtraction result:";
+		p3.show();
+		cout << endl;
+	}
+	return 0;
+}
+输入
+输入有三行，第一行依次输入第一个二维数组的行数和列数、第二个二维数组的行数和列数，第二行依次输入第一个二维数组所有元素，第三行依次输入第二个二维数组所有元素
+
+输出
+按格式依次输出两个二维数组加减法运算结果
+
+样例输入 Copy
+2 5 2 5 
+1 2 3 4 5 5 4 3 2 1 
+1 1 1 1 1 2 2 2 2 2 
+2 5 2 5 
+6 5 4 4 4 8 8 0 1 9 
+4 3 2 2 2 1 0 0 2 3 
+2 5 2 5 
+12 3 4 5 3 7 6 0 0 1 
+17 10 1 9 9 7 5 4 4 4
+样例输出 Copy
+Addition result:2 3 4 5 6 7 6 5 4 3  Subtraction result:0 1 2 3 4 3 2 1 0 -1 
+Addition result:10 8 6 6 6 9 8 0 3 12  Subtraction result:2 2 2 2 2 7 8 0 -1 6 
+Addition result:29 13 5 14 12 14 11 4 4 5  Subtraction result:-5 -7 3 -4 -6 0 1 -4 -4 -3 
+提示
+为简化show函数，循环每输出一个数字后面直接跟一个空格，也就是说，结合main函数看，样例输出中的Addition result的最后一个数字后面是两个空格，每一行最后都会有多余的一个空格

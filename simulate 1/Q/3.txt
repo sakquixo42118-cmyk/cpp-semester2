@@ -1,0 +1,48 @@
+在智能设备中，电池是必不可少的部分。你需要设计一个Battery类，用于模拟电池电量的变化。
+
+每个电池有以下三个属性：当前电量(charge, 单位mAh，整数)、电池容量(capacity， 单位mAh，整数，表示最大电量)、充放电效率(efficiency，0～100的整数，表示在充电或放电时的能量保留比例)。
+
+请设计程序完成以下功能：
+
+1、构造函数，用于初始化电池(传入初始电量、容量、效率)；
+
+2、+运算符重载：将两个电池合并为一个新的电池，新电量为两个电池按效率叠加的总和，新容量为两个电池容量之和，新效率取两个电池效率的最小值；
+
+3、++ 运算符重载：表示对当前电池充电 100 mAh，充电效率生效，且充电后不能超过最大容量；
+
+4、== 运算符重载：两个电池电量视为相等当且仅当它们的当前电量相同（忽略容量和效率）；
+
+5、<< 运算符重载：输出格式为Battery(charge=XXX, capacity=YYY, efficiency=ZZZ%)；
+
+输入
+每组输入为两个电池参数，共六个参数。需要考虑多组输入，测试函数中已实现。
+
+charge1 capacity1 efficiency1 charge2 capacity2 efficiency2
+
+输出
+b1 = Battery(charge=XXX, capacity=XXX, efficiency=XXX%)
+
+b2 = Battery(charge=XXX, capacity=XXX, efficiency=XXX%)
+
+b3 = b1 + b2 = Battery(...)
+
+++b3 = Battery(...)
+
+b1 和 b2 电量相等/不相等
+
+必须使用的关键字
+class 
+样例输入 Copy
+500 1000 90 300 800 80
+900 1000 100 900 1000 100
+样例输出 Copy
+b1 = Battery(charge=500, capacity=1000, efficiency=90%)
+b2 = Battery(charge=300, capacity=800, efficiency=80%)
+b3 = b1 + b2 = Battery(charge=690, capacity=1800, efficiency=80%)
+++b3 = Battery(charge=770, capacity=1800, efficiency=80%)
+b1 和 b2 电量不相等
+b1 = Battery(charge=900, capacity=1000, efficiency=100%)
+b2 = Battery(charge=900, capacity=1000, efficiency=100%)
+b3 = b1 + b2 = Battery(charge=1800, capacity=2000, efficiency=100%)
+++b3 = Battery(charge=1900, capacity=2000, efficiency=100%)
+b1 和 b2 电量相等

@@ -1,0 +1,52 @@
+地铁售票管理程序。地铁公司将客户分为三类：老年人、学生、普通客户，分别颁发老年卡、学生卡和普通卡，对不同持卡人购票时的折扣率是不一样的。假设每种卡初始余额都为 100 元。比如：老年卡购票金额为原价的 50%，学生卡的购票金额为原价的 60%，普通卡的购票金额为原价的 95%。设计程序，输入为老年卡、学生卡、普通卡的折扣率、标准票价，输出为刷卡种类（OLDER、STUDENT、COMMON）以及实际扣款数目（程序要能判断余额是否不足，并给出提示信息 Please recharge!）。要求使用两层类结构实现。注意：建立地铁卡类为抽象类，将刷卡种类和设置折扣率定义成纯虚函数。由地铁卡类派生老年卡、学生卡和普通卡。具体的 main 函数测试代码如下：
+
+int main() {
+	double o, s, c, p;
+	int n;
+	cin >> o >> s >> c >> p;
+	olderCard O(p); O.setDiscount(o);
+	studentCard S(p); S.setDiscount(s);
+	commonCard C(p); C.setDiscount(c);
+	while (cin >> n) {
+		for (int i = 0; i < n; i++) {
+			O.setType(); O.consume();
+			S.setType(); S.consume();
+			C.setType(); C.consume();
+		}
+	}
+	return 0;
+}
+输入
+第一行输入老年卡、学生卡、普通卡的折扣率和标准票价；第二行输入刷卡次数。
+
+输出
+输出刷卡种类（OLDER、STUDENT、COMMON）以及实际扣款数目。 用 3 个空格隔开。
+
+样例输入 Copy
+0.5 0.6 0.8 20
+8
+样例输出 Copy
+OLDER 10
+STUDENT 12
+COMMON 16
+OLDER 10
+STUDENT 12
+COMMON 16
+OLDER 10
+STUDENT 12
+COMMON 16
+OLDER 10
+STUDENT 12
+COMMON 16
+OLDER 10
+STUDENT 12
+COMMON 16
+OLDER 10
+STUDENT 12
+COMMON 16
+OLDER 10
+STUDENT 12
+COMMON Please recharge! 
+OLDER 10
+STUDENT 12
+COMMON Please recharge!

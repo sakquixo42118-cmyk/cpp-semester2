@@ -1,0 +1,95 @@
+在超市购物场景中，商品有不同的计价方式，并且可能会有促销活动。你需要实现相关类，要求如下：
+
+1.实现一个抽象基类 Product，包含纯虚函数getPrice和getName用于计算商品的实际价格以及返回商品的名称。你还需要从 Product 类派生出两个子类，即商品类(RegularProduct)和折扣商品类(DiscountedProduct)，类中属性自行定义。这两个类中的getPrice和getName的实现有所区别：
+
+（1）RegularProduct：getPrice按原价（输入价格）处理。
+
+（2）DiscountedProduct：getPrice在原价（输入价格）基础上进行折扣计算，计算方式为价格*折扣，getName在商品名称后追加“(特价)”，具体参考样例输出。
+
+2.实现一个模版类 ShoppingCart，模版参数对应商品类型，用于管理购物车中的商品。类中需要保存商品的信息和购买数量。该类需要实现添加商品的方法addProduct(不需要检查商品是否存在，直接添加即可)、计算购物车总价的方法 calculateTotalPrice和一个查看购物车商品方法productList。如果还需要其它方法或者属性可以自行添加。
+
+测试代码如下：
+
+
+int main() {
+
+    int n = 0;
+
+    while (cin >> n) {
+
+        bool own = n > 0 ? true : false;//购物车中是否有商品
+
+        // 基类指针类型保存子类指针，实现多态，ShoppingCart<T>, T = Product*
+
+        ShoppingCart<Product*> *cart = new ShoppingCart<Product*>(own);
+
+        for (int i = 0; i < n; i++) {
+
+            string name;
+
+            double price, discount;
+
+            int quantity;
+
+            cin >> name >> price >> quantity;
+
+            if (cin.peek() != '\n') {
+
+                cin >> discount;
+
+                //void addProduct(T product, int quantity)
+
+                cart->addProduct(new DiscountedProduct(name, price, discount), quantity);
+
+            }
+
+            else {
+
+                cart->addProduct(new RegularProduct(name, price), quantity);
+
+            }
+
+        }
+
+        cout << "购物车总价: " << cart->calculateTotalPrice() << " 元" << endl;
+
+        cart->productList();
+
+        delete cart;
+
+    }
+
+    return 0;
+
+}
+
+
+
+
+
+输入
+考虑多组输入，参数的处理参考测试代码，不需要自己实现。
+
+
+第一行为商品数量n，后续n行为商品信息。
+
+如果是普通商品，包含3个参数，分别为：商品名称，价格，数量
+
+如果是特价商品，包含4个参数，分别为：商品名称，价格，数量，折扣
+
+其中价格和折扣是double类型，折扣是范围为(0, 1.0)
+
+输出
+详见测试函数
+
+必须使用的关键字
+class template 
+样例输入 Copy
+2
+苹果 5.0 1
+香蕉 3.0 2 0.8
+样例输出 Copy
+购物车总价: 9.8 元
+购物车商品列表：
+1.苹果，单价: 5元，数量: 1, 小计: 5元
+2.香蕉（特价），单价: 2.4元，数量: 2, 小计: 4.8元

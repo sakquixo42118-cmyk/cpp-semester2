@@ -1,0 +1,27 @@
+编写一个函数模板，该函数接受一个字符串参数，并返回该字符串中每种字符出现的次数。main函数的测试代码如下：
+int main() {
+	string line;
+	while (getline(cin, line)) {
+// 函数模板vector<CharCount<CharType>> countCharacters(const basic_string<CharType>& str) ,CharType是自定义类型
+		auto counts = countCharacters(line);// auto会根据返回值类型自动适配
+		for (size_t i = 0; i < counts.size(); ++i) {
+			if (i > 0) {
+				cout << " ";
+			}
+			cout << counts[i].character << ":" << counts[i].count;
+		}
+		cout << endl;
+	}
+	return 0;
+}
+输入
+输入包含多组数据，每组数据是一行字符串，只包含小写字符。
+输出
+对于每组输入数据，输出每种字符出现的次数。字符顺序按照字符串中的出现顺序。
+
+必须使用的关键字
+template 
+样例输入 Copy
+moonshot
+样例输出 Copy
+m:1 o:3 n:1 s:1 h:1 t:1

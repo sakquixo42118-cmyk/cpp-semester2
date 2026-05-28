@@ -1,0 +1,69 @@
+假设你正在编写一个数学库，你需要设计一个基类 Number，表示所有数值，包括整数和实数。请定义 Number 类，并添加两个子类 Integer 和 Real，分别表示整数和实数。每个 Number 都可以进行基本的算术运算，包括加、减、乘、除，以及求幂。请使用继承和多态来实现这些运算。相应的测试主函数如下所示：
+
+int main() {
+	int a, b;
+	double c, d;
+	while (cin >> a >> b >> c >> d) {
+		Integer* i1 = new Integer(a);
+		Integer* i2 = new Integer(b);
+		Real* r1 = new Real(c);
+		Real* r2 = new Real(d);
+		// 测试整数的算术运算
+		Number* result = i1->add(i2);
+		result->print();
+		result = i1->subtract(i2);
+		result->print();
+		result = i1->multiply(i2);
+		result->print();
+		result = i1->divide(i2);
+		result->print();
+		result = i1->power(i2);
+		result->print();
+		// 测试实数的算术运算
+		result = r1->add(r2);
+		result->print();
+		result = r1->subtract(r2);
+		result->print();
+		result = r1->multiply(r2);
+		result->print();
+		result = r1->divide(r2);
+		result->print();
+		result = r1->power(r2);
+		result->print();
+	}
+	return 0;
+}
+输入
+两个 int: a 和 b、两个 double: c 和 d
+
+输出
+十行，按顺序输出：
+
+a 和 b 的加、减、乘、除，以及求幂结果
+
+c 和 d 的加、减、乘、除，以及求幂结果
+
+样例输入 Copy
+2 2 3.2 3.1 
+-3 -4 3.3 -4
+样例输出 Copy
+4
+0
+4
+1
+4
+6.3
+0.1
+9.92
+1.03226
+36.8099
+-7
+1
+12
+0
+0
+-0.7
+7.3
+-13.2
+-0.825
+0.00843226

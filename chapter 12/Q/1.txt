@@ -1,0 +1,19 @@
+编写一个程序，将输入逆序输出。以下是main函数，请补充完整：
+int main() {
+	string source_name, dest_name, content;
+	while (getline(cin, content)) {
+		reverse_string(content);
+		cout << "翻转成功: " << content << endl;
+	}
+	return 0;
+}
+输入
+一行字符串
+
+输出
+见main
+
+样例输入 Copy
+Hello, World! This is a sample file for reversing.
+样例输出 Copy
+翻转成功: .gnisrever rof elif elpmas a si sihT !dlroW ,olleH

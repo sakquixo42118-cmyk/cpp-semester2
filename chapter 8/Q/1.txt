@@ -1,0 +1,38 @@
+设计一个时间类 Time,实现时间的计算。时间类 Time 有三个私有成员，分别为 hour，minute(<60)，second(<60)，并且带有重载的+,-,<,>运算符，用于时间的计算。类的测试代码，如下所示：
+
+int main()
+{
+	int n;
+	cin >> n;
+	while (n--)
+	{
+		int h, m, s;
+		cin >> h >> m >> s;
+		Time time1(h, m, s);
+		cin >> h >> m >> s;
+		Time time2(h, m, s);
+		(time1 + time2).display();
+		cout << " ";
+		if (time1 > time2)
+		{
+			(time1 - time2).display();
+		}
+		else
+		{
+			(time2 - time1).display();
+		}
+		cout << endl;
+	}
+}
+输入
+第一行输入一个整数 n，表示接下来有 n 组数据。每组数据包括两组 hour（int）， minute（int），second（int），用于初始化两个 Time 对象。
+输出
+每组的输出结果为两个 Time 对象相加和相减的结果，中间用空格隔开，减法操作为较大的 Time 对象减去较小的 Time 对象，Time 类的输出格式为hour:minute:second。每组数据用换行符隔开。
+
+样例输入 Copy
+2
+1 30 25 1 25 30
+1 25 30 2 0 25
+样例输出 Copy
+2:55:55 0:4:55
+3:25:55 0:34:55

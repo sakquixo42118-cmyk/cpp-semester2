@@ -1,0 +1,35 @@
+设计一个日期类，该类包含：
+
+(1) 表示年月日的成员变量 year, month, day, 均为整数。
+
+(2) 带参数的构造函数，按指定的日期构造一个对象。
+
+(3) 输出当前日期(重载 operator<<)。
+
+(4) +操作：输出+n 天后的日期。
+
+(5) 获取该日期是当年的第多少天。
+
+测试主函数如下所示：
+
+int main() {
+	int year, month, day;
+	while (cin >> year >> month >> day) {
+		Date d(year, month, day);
+		cout << d.NthDay() << endl;
+		d = d + 1039;
+		cout << d << endl;
+	}
+	return 0;
+}
+输入
+year, month, day。注意有多组输入。
+
+输出
+当前日期是该 year 的第 x 天，以及+ n(此处 n 取 1039)天之后的日期。
+
+样例输入 Copy
+2020 6 2
+样例输出 Copy
+154
+2023 4 7

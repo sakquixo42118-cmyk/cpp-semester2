@@ -1,0 +1,37 @@
+题目描述
+设计一个处理三进制数的 Ternary 类，它具有下述成员函数：
+
+(1) 构造函数：Ternary(int num)实现将十进制整数转化为三进制数；
+
+(2) display():显示当前的三进制数；
+
+(3) 重载下标运算符[]，三进制最低位下标为 0；
+
+(4) 重载+运算实现三进制数的加法运算，要求不能改变加数的数值；以下是main 函数代码，请根据 main 函数的需要和上述要求完成 Ternary 类的定义。
+
+int main() {
+	int num1, num2;
+	cin >> num1 >> num2;
+	Ternary t1(num1), t2(num2);
+	cout << t1[0] << ' ' << t2[0] << '\n';
+	t1.display();
+	t2.display();
+	Ternary t3 = t1 + t2;
+	t3.display();
+	t1.display();
+	return 0;
+}
+输入
+输入两个整数 num1 和 num2。 
+
+输出
+依根据 main 函数，给出对应结果。
+
+样例输入 Copy
+10 19
+样例输出 Copy
+1 1
+101
+201
+1002
+101

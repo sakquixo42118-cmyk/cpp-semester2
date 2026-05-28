@@ -1,0 +1,118 @@
+设计泛型集合类并实现集合运算，支持集合的并、交、差。
+
+要求：
+
+1.抽象基类Setbase<T>
+
+（1）保护成员：vector<T> elements
+
+（2）函数：
+
+void add(T val)：纯虚函数，添加元素
+
+int size()：返回元素数量
+
+（3）重载==：判断两个集合元素相等
+
+2.模板派生类 GenericSet<T>（公有继承 Setbase<T>）
+
+（1）实现void add(T val)：保持升序添加元素，自动去重
+
+（2）实现bool contains(T val)：判断元素是否存在
+
+（3）运算符重载，需要返回一个新的GenericSet<T>对象
+
++：并集（所有元素，去重）
+
+*：交集（共同存在的元素）
+
+-：差集（属于当前集合，不属于另一集合）
+
+（4）重载<<：输出格式：{1, 2, 3, 5}，空集输出{}。
+
+（5）添加函数：
+
+int sum()：元素求和
+
+int maxVal()：最大值
+
+int minVal()：最小值
+
+ 
+
+main函数测试代码如下：
+
+int main() {
+    vector<double> nums1;
+    vector<double> nums2;
+    string line1, line2;
+    // 循环读取多组测试数据，每组两行，需要#include <sstream>
+    while (getline(cin, line1) && getline(cin, line2)) {
+        nums1.clear();
+        nums2.clear();
+        // 读取第一行集合
+        stringstream ss1(line1);
+        double num1;
+        while (ss1 >> num1) {
+            nums1.push_back(num1);
+        }
+        // 读取第二行集合
+        stringstream ss2(line2);
+        double num2;
+        while (ss2 >> num2) {
+            nums2.push_back(num2);
+        }
+        GenericSet<double> set1;
+        GenericSet<double> set2;
+        for (int i = 0; i < nums1.size(); i++) {
+            set1.add(nums1[i]);
+        }
+        for (int i = 0; i < nums2.size(); i++) {
+            set2.add(nums2[i]);
+        }
+
+        // 输出测试结果
+        cout << "Set1: " << set1 << endl;
+        cout << "Set2: " << set2 << endl;
+	cout << "Union: " << (set1 + set2) << endl;//并集
+	cout << "Intersection: " << (set1 * set2) << endl;//交集
+	cout << "Difference: " << (set1 - set2) << endl;//差集
+        cout << "Set1 == Set2: " << boolalpha << (set1 == set2) << endl;
+        cout << "Sum of A: " << set1.sum() << endl;
+        cout << "Max of A: " << set1.maxVal() << endl;
+        cout << "Min of A: " << set1.minVal() << endl;
+    }
+    return 0;
+}
+输入
+每一组两行，元素以空格隔开，每一行分别表示两个集合的元素（可能有重复）
+
+输出
+参考main测试函数和样例输出
+
+必须使用的关键字
+template operator 
+样例输入 Copy
+1 1 2 2 3
+1 2
+5 1 1 2 2
+1 2 4
+样例输出 Copy
+Set1: {1, 2, 3}
+Set2: {1, 2}
+Union: {1, 2, 3}
+Intersection: {1, 2}
+Difference: {3}
+Set1 == Set2: false
+Sum of A: 6
+Max of A: 3
+Min of A: 1
+Set1: {1, 2, 5}
+Set2: {1, 2, 4}
+Union: {1, 2, 4, 5}
+Intersection: {1, 2}
+Difference: {5}
+Set1 == Set2: false
+Sum of A: 8
+Max of A: 5
+Min of A: 1

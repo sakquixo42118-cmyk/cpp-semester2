@@ -1,0 +1,64 @@
+设计一个名为Stock的类，这个类包含：
+
+l  一个名为symbol的字符串类型数据域，表示股票代号；
+
+l  一个名为name的字符串型数据域，表示股票名；
+
+l  一个名为previousClosingPrice的double型数据域，保存股票前一交易日收盘价；
+
+l  一个名为currentPrice的double型数据域，保存股票的当前价格；
+
+l  一个构造函数，按给定代号和名字创建一支股票；
+
+l  previousClosing和currentPrice的更改器函数；
+
+l  一个名为changePercent()的函数，返回当前股价与前一交易日收盘价相比的变化百分率；
+
+编写一个测试程序，它创建一个Stock对象，股票代号为SUNW，股票名为Sun Microsystem Inc， 前一交易日收盘价为100.然后设置当前股票价为90，输出股票变化百分率；
+
+输入
+股票代码
+股票名称
+前一日收盘价
+当前股票价
+
+
+输出
+股票变化百分率
+样例输入 Copy
+SUNW
+Sun Microsystems Inc.
+100
+90
+样例输出 Copy
+-10.00%
+提示
+变化百分比=（currentPrice−previousClosingPrice）/ previousClosingPrice × 100%
+
+
+测试主函数
+int main() {
+
+    string symbol, name;
+
+    double prev, curr;
+
+    getline(cin, symbol);
+
+    getline(cin, name);  
+
+    cin >> prev;         
+
+    cin >> curr;         
+
+    Stock stock(symbol, name);
+
+    stock.setPreviousClosingPrice(prev);
+
+    stock.setCurrentPrice(curr);
+
+    cout << fixed << setprecision(2) << stock.getChangePercent() << "%" << endl;
+
+    return 0;
+
+}

@@ -1,0 +1,36 @@
+编写一个程序，统计并输出文本中的有效单词（只包含字母的片段）数量。以下是main函数，请补充完整：
+
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <limits>
+using namespace std;
+int main() {
+    int n;
+    while (cin >> n) {
+        // 忽略输入流中剩余的所有字符（包括多个换行/空格），兼容linux
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        int total_words = 0;
+        string line;
+        for (int i = 0; i < n; i++) {
+            getline(cin, line);
+            total_words += countWordsInLine(line);
+        }
+        cout << total_words << endl;
+    }
+    return 0;
+}
+
+输入
+多组输入，每组第一行输入文本行数n，后续n行输入文本内容
+输出
+输出单词数量
+样例输入 Copy
+1
+hello world!
+2
+Hello   world 123 Test!! ABC
+a1b DEF  !!xyz  GHI
+样例输出 Copy
+1
+5

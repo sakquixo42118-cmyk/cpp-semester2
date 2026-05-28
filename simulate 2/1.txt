@@ -1,0 +1,55 @@
+设计一个简单的角色战斗系统，实现不同角色的攻击与受伤逻辑。具体要求如下：
+
+1.定义抽象基类Character
+
+（1）包含生命值hp和攻击力atk
+
+（2）纯虚函数attack(Character &target)
+
+（3）普通函数isDead()判断是否死亡
+
+2.定义派生类战士类Warrior，公有继承Character
+
+（1）实现attack：对目标造成atk+0.1*hp（向下取整）点伤害
+
+3.定义派生类法师类Mage，公有继承Character
+
+（1）实现attack：对目标造成atk*1.5（向下取整）点伤害
+
+main函数测试代码如下：
+
+int main() {
+    int wh, wa, mh, ma;
+    while (cin >> wh >> wa >> mh >> ma) {
+        Warrior w(wh, wa);
+        Mage m(mh, ma);
+        w.attack(m);
+        m.attack(w);
+        cout << w.getHp() << " " << m.getHp() << " ";
+        bool wd = w.isDead();
+        bool md = m.isDead();
+        if (wd && md)//都死了
+            cout << "Both";
+        else if (wd)//战士死了
+            cout << "Mage";
+        else if (md)//法师死了
+            cout << "Warrior";
+        else//都活着
+            cout << "None";
+        cout << endl;
+    }
+    return 0;
+}
+
+输入
+每组输入四个整数：战士hp 战士atk 法师hp 法师atk
+
+输出
+战士剩余HP 法师剩余HP 结果，结果表示角色存活情况，参考测试函数代码，包括：Warrior/Mage/Both/None
+
+样例输入 Copy
+100 20 30 15
+100 20 50 10
+样例输出 Copy
+78 0 Warrior
+85 20 None

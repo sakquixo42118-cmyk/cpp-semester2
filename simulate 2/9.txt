@@ -1,0 +1,181 @@
+设计一个泛型库存类，维护若干商品的信息，并支持入库、出库、查询、统计等操作作。
+
+每个商品包含：
+
+name：商品名（字符串，唯一键）
+
+price：单价（double）
+
+count：库存数量（int）
+
+操作类型：
+
+IN name price count：入库（调用 add）
+
+OUT name count：出库
+
+HAS name：查询是否存在
+
+SIZE：输出商品种类数
+
+VALUE：输出总价值（保留两位小数）
+
+MAX：输出最大库存商品
+
+PRINT：输出当前库存
+
+ 
+
+要求：
+
+抽象基类 Storebase<T>
+
+保护成员：vector<T> items
+
+函数：
+
+void add(const T& x)：纯虚函数（添加商品或补货）
+
+int size() const：返回当前商品种类数
+
+重载 ==：判断两个仓库商品序列是否完全相同（顺序+内容）
+
+2）模板派生类 Inventory<T>（公有继承 Storebase<T>）
+
+实现以下功能：
+
+void add(const T& x)
+
+若 name 已存在：数量累加，单价更新为新单价
+
+若不存在：按 name 字典序插入
+
+bool remove(const string& name, int k)
+
+商品不存在或库存不足，返回 false
+
+否则扣减 k，若扣完变 0 则删除该商品，返回 true
+
+bool contains(const string& name) const
+
+是否存在该商品
+
+double totalValue() const
+
+库存总价值：sum(price * count)
+
+T maxStockItem() const
+
+返回库存数量最大的商品；若并列，返回名字字典序更小者
+
+
+
+
+空仓库返回默认对象：(,0.00,0)
+
+
+ 
+
+重载 <<
+
+输出格式：[(apple,2.50,4), (milk,5.00,1)]
+
+空仓库输出：[]
+
+ 
+
+main函数如下：
+
+int main() {
+
+    
+
+ios::sync_with_stdio(false);
+
+    cin.tie(nullptr);
+
+ 
+
+    int n;
+
+    while (cin >> n) {
+
+        Inventory<Product> inv;
+
+        string op;
+
+        for (int i = 0; i < n; ++i) {
+
+            cin >> op;
+
+            if (op == "IN") {
+
+                string name; double p; int c;
+
+                cin >> name >> p >> c;
+
+                inv.add(Product(name, p, c));
+
+            } else if (op == "OUT") {
+
+                string name; int c;
+
+                cin >> name >> c;
+
+                cout << "Out " << name << " " << c << ": " << boolalpha << inv.remove(name, c) << "\n";
+
+            } else if (op == "HAS") {
+
+                string name; cin >> name;
+
+                cout << "Has " << name << ": " << boolalpha << inv.contains(name) << "\n";
+
+            } else if (op == "SIZE") {
+
+                cout << "Size: " << inv.size() << "\n";
+
+            } else if (op == "VALUE") {
+
+                cout << "TotalValue: " << fixed << setprecision(2) << inv.totalValue() << "\n";
+
+            } else if (op == "MAX") {
+
+                cout << "MaxStock: " << inv.maxStockItem() << "\n";
+
+            } else if (op == "PRINT") {
+
+                cout << "Inventory: " << inv << "\n";
+
+            }
+
+        }
+
+    }
+
+    return 0;
+
+}
+
+输入
+多组数据，第一行一个整数n：操作数，接下来n行，每行一个操作
+
+输出
+每条操作 按要求输出
+
+样例输入 Copy
+8
+IN pen 2.00 10
+IN book 12.50 3
+SIZE
+VALUE
+OUT pen 10
+HAS pen
+MAX
+PRINT
+样例输出 Copy
+Size: 2
+TotalValue: 57.50
+Out pen 10: true
+Has pen: false
+MaxStock: (book,12.50,3)
+Inventory: [(book,12.50,3)]

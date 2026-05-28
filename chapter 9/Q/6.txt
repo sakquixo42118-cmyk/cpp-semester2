@@ -1,0 +1,74 @@
+双十一到了，小红准备屯一波物资。双十一主要有满减和统一折扣两种优惠方式，主要规则如下：
+
+(1) 优惠方式一，下单时购物车内商品全部 9 折；
+
+(2) 优惠方式二，下单时购物车内每满 200 元减 30 元；
+
+(3) 两种优惠方式仅能参加一个。
+
+请你设计下列类帮小红计算哪种优惠方式最划算。购物车类(Cart)，购物车中有鸡蛋(Egg)、 挂面(Noodles)、可乐(Cola)三种商品，购物车中应包含单价(price)，购买数量(num)以及计算付款总额的方法 caculate；两种付款方式 DisCount 和 Minus 为购物车类的两个派生类。main 函数及基类 Cart、派生类 DisCount、Minus 的部分设计代码如下，请在已有代码的基础上进行补充，使程序完整。
+
+class Cart {
+public:
+	// 存储商品单价和数量的数组
+	double price[3];
+	int num[3];
+	// 存储总价
+	double sumPrice = 0;
+	// 重载输入
+	friend istream& operator>>(istream& input, Cart& c);
+	// 计算总价
+	double caculate();
+};
+class DisCount : public Cart {
+public:
+	//重写总价计算方法
+	double caculate();
+};
+class Minus : public Cart {
+public:
+	//重写总价计算方法
+	double caculate();
+};
+int main()
+{
+	int n;
+	cin >> n;
+	while (n > 0) {
+		DisCount d;
+		Cart* cart = &d;
+		cin >> *cart;
+		// 计算原价
+		double originPrice = cart->caculate();
+		DisCount* discount = (DisCount*)cart;
+		double res1 = discount->caculate();
+		Minus* minus = (Minus*)cart;
+		double res2 = minus->caculate();
+		cout << originPrice << " ";
+		// 输出优惠力度最大的付款价格
+		if (res1 < res2) {
+			cout << res1 << endl;
+		}
+		else {
+			cout << res2 << endl;
+		}
+		n--;
+	}
+	return 0;
+}
+
+输入
+第一行为数据组数；第二行为鸡蛋、挂面、可乐三种商品的单价；第三行鸡蛋、 挂面、可乐三种商品的数量。根据数据组数给出鸡蛋、挂面、可乐三种商品的单价和数量。
+
+输出
+对于每组输入，分别输出原价和两种方案之一的最低价格
+
+样例输入 Copy
+2
+0.66 8.3 2.3
+10 10 10
+0.66 8.3 2.3
+100 20 10
+样例输出 Copy
+112.6 101.34 
+255 225

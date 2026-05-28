@@ -1,0 +1,47 @@
+从 MyPoint 类派生出一个三维空间的点 Point3D 类。需要包含以下额外属性。
+
+(1) 一个名为 z 的数据域，表示 z 轴，类型为整型。
+
+(2) 一个无参构造函数，创建一个坐标为(0,0,0)的点
+
+(3) 一个带参构造函数，按给定的坐标创建一个点。
+
+(4) z 的获取函数 getZ()。
+
+(5) 覆盖父类的 distance 函数，计算当前点到原点的距离。
+
+主函数的测试代码如下：
+
+int main() {
+	int flag, x, y, z;
+	MyPoint* point = nullptr;
+	while (cin >> flag) {
+		if (1 == flag) {
+			cin >> x >> y;
+			point = new MyPoint(x, y);
+		}
+		else if (2 == flag) {
+			cin >> x >> y >> z;
+			point = new Point3D(x, y, z);
+		}
+		cout << fixed << setprecision(2);
+		if (point != nullptr) {
+			cout << point->distance() << endl;
+		}
+		delete point;
+		point = nullptr;
+	}
+	return 0;
+}
+输入
+包含多个测试用例。每组输入先输入一个整数，若这个数为 1，表示将输入一个二维坐标点。如果为 2，则输入一个三维坐标点。
+
+输出
+对于每组输入，输出这个点到原点的距离。
+
+样例输入 Copy
+1 5 12
+2 3 3 6
+样例输出 Copy
+13.00
+7.35

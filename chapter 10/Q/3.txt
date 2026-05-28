@@ -1,0 +1,54 @@
+定义一个 Person 抽象类，包含名称与年龄字段。有 Male 类和 Female 类分别派生自 Person 类，分别包含 MaleCnt 静态字段和 FemaleCnt 静态字段，用于统计总共有多少个实例。设计一个类的静态成员函数 Create，根据输入的参数创建出对应 Male 类实例或Female 类实例。创建完毕后，调用 info 虚函数，打印出人员的信息。创建完所有人员后，调用 Male 和 Female 中的静态方法 stat 函数，打印出创建实例的数目。具体的 main 函数测试代码如下：
+
+int main() {
+	string line;
+	while (getline(cin, line)) {
+		istringstream iss(line);
+		string gender;
+		string name;
+		int age;
+		Person* person = NULL;
+		iss >> gender >> name >> age;
+		if (gender == "M") {
+			person = new Male(toUpperCase(name), age);
+		}
+		else if (gender == "F") {
+			person = new Female(toUpperCase(name), age);
+		}
+		if (person) {
+			person->info();
+			delete person; // 释放动态分配的内存
+		}
+	}
+	Male::stat();
+	Female::stat();
+	return 0;
+
+	}
+
+
+
+
+	
+	
+
+		提示：本地测试时可以输入Ctrl+Z，屏幕上显示^Z，按下回车即可主动退出程序。
+	
+
+
+
+
+
+输入
+每行是一个人员的信息，性别、名称、年龄
+
+输出
+每行是一个人员的信息，全拼性别、全大写的名称、年龄；最后输出创建的 Male 类实例数，Female 类实例数。
+
+样例输入 Copy
+F hu 11 
+M youAi 12
+样例输出 Copy
+Female HU 11 
+Male YOUAI 12 
+1 1

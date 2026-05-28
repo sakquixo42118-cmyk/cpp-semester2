@@ -1,0 +1,43 @@
+设计一个程序，通过多基类继承，产生并输出圆桌的相关信息。具体要求如下：
+
+（1）定义基类 Circle 作为桌面，类中包含 double 类型的数据成员：桌面半径和面积，还有一个构造函数用来初始化桌面半径。
+
+（2）定义基类 Table 作为桌子，类中包含 double 类型的数据成员：桌子高度，还有一个构造函数用来初始化桌子高度。
+
+（3）定义类 Circle 和类 Table 的公有派生类 Roundtable，新增用指针变量表示圆桌颜色的数据成员，该类的构造函数应对高度、半径和颜色进行初始化，再定义一个求桌面面积的函数 fun( )，还有一个按指定格式输出数据成员的输出函数（输出格式见 sample output），最后还要定义一个析构函数用来释放动态申请的空间。 圆周率的值统一取 3.14，输出的数值只保留小数点后两位.
+
+在主函数中测试所定义的类。主函数的测试代码如下：
+
+int main() {
+	cout << "please input the data of round table:" << endl;
+	int r, h;
+	char c[100];
+	cout << "radius:" << endl;
+	cin >> r;
+	cout << "height:" << endl;
+	cin >> h;
+	cout << "color:" << endl;
+	cin.get();
+	cin.getline(c, 100);
+	RoundTable rt = RoundTable(r, h, c);
+	rt.print();
+	return 0;
+}
+输入
+依次输入半径、高度、颜色等信息
+
+输出
+见输出样例
+
+样例输入 Copy
+1
+2
+black
+样例输出 Copy
+please input the data of round table:
+radius:
+height:
+color:
+height:2
+area:3.14
+color:black
